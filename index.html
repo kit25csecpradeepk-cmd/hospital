@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HealthPass · Workspace</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+    <aside class="sidebar">
+        <a class="brand" href="#dashboard">
+            <span class="brand-mark" aria-hidden="true">+</span>
+            <span>HealthPass<small>CARE WORKSPACE</small></span>
+        </a>
+        <p class="nav-caption">WORKSPACE</p>
+        <nav class="side-nav" aria-label="Main navigation">
+            <button class="nav-link active" data-page="dashboard"><span>⌂</span> Overview</button>
+            <button class="nav-link" data-page="records"><span>▤</span> Medical records</button>
+            <button class="nav-link" data-page="activity"><span>◷</span> Access activity</button>
+        </nav>
+        <div class="sidebar-bottom">
+            <div class="privacy-note"><span class="privacy-dot"></span><div><strong>Demo mode</strong><small>Do not enter real patient data.</small></div></div>
+            <button id="logoutButton" class="logout-link" type="button">Sign out</button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div><p class="eyebrow">CARE WORKSPACE</p><h1 id="pageTitle">Overview</h1></div>
+            <div class="user-chip">
+                <span class="avatar" id="userInitials">HP</span>
+                <span><strong id="facilityName">Demo facility</strong><small id="usernameLabel">Demo user</small></span>
+            </div>
+        </header>
+
+        <div class="demo-banner">
+            <strong>Demo environment</strong>
+            <span>Data is stored in this browser. This is not a secure medical-record system.</span>
+        </div>
+
+        <section class="page active" id="dashboard">
+            <div class="welcome-row">
+                <div>
+                    <p class="eyebrow">PATIENT WORKSPACE</p>
+                    <h2>Patient overview</h2>
+                    <p class="muted">Manage a local demo profile and visit notes.</p>
+                </div>
+                <span class="today-pill" id="todayLabel"></span>
+            </div>
+
+            <div class="stat-grid">
+                <article class="stat-card"><span class="stat-label">PATIENT STATUS</span><strong id="patientStatus">Not registered</strong><small>Local demo profile</small></article>
+                <article class="stat-card"><span class="stat-label">VISIT RECORDS</span><strong id="recordCount">0</strong><small>Saved in this browser</small></article>
+                <article class="stat-card"><span class="stat-label">ACTIVITY EVENTS</span><strong id="activityCount">0</strong><small>Workspace actions</small></article>
+            </div>
+
+            <div class="content-grid">
+                <article class="panel">
+                    <div class="panel-heading"><div><p class="eyebrow">PATIENT PROFILE</p><h3 id="patientFormTitle">Register a patient</h3></div></div>
+                    <form id="patientForm" class="form-grid">
+                        <div class="field full-field"><label for="patientName">Full name</label><input id="patientName" maxlength="100" required></div>
+                        <div class="field"><label for="patientAge">Age</label><input id="patientAge" type="number" min="0" max="120" required></div>
+                        <div class="field"><label for="patientBlood">Blood group</label>
+                            <select id="patientBlood" required>
+                                <option value="">Choose group</option>
+                                <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                                <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                                <option>Unknown</option>
+                            </select>
+                        </div>
+                        <div class="field"><label for="patientPhone">Phone</label><input id="patientPhone" type="tel" maxlength="30"></div>
+                        <div class="field"><label for="patientEmergency">Emergency contact</label><input id="patientEmergency" type="tel" maxlength="30"></div>
+                        <div class="full-field form-actions">
+                            <button class="button button-primary" type="submit">Save profile</button>
+                            <button class="button button-quiet" id="clearPatientButton" type="button">Clear form</button>
+                        </div>
+                    </form>
+                </article>
+
+                <article class="panel">
+                    <div class="panel-heading"><div><p class="eyebrow">PROFILE SUMMARY</p><h3>Patient details</h3></div></div>
+                    <div id="patientSummary" class="empty-state">
+                        <span class="empty-icon" aria-hidden="true">＋</span>
+                        <strong>No patient profile yet</strong>
+                        <p>Complete the form to create a local demo profile.</p>
+                    </div>
+                    <div class="profile-footer"><span class="status-indicator"></span><span id="profileHint">Waiting for profile setup</span></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="page" id="records">
+            <div class="section-intro"><p class="eyebrow">PATIENT CARE</p><h2>Medical records</h2><p class="muted">Add a visit entry for the demo patient.</p></div>
+            <div class="content-grid records-grid">
+                <article class="panel">
+                    <div class="panel-heading"><div><p class="eyebrow">NEW ENTRY</p><h3>Add visit record</h3></div></div>
+                    <form id="recordForm" class="form-grid">
+                        <div class="field"><label for="recordDoctor">Doctor</label><input id="recordDoctor" maxlength="100" required></div>
+                        <div class="field"><label for="recordDate">Visit date</label><input id="recordDate" type="date" required></div>
+                        <div class="field full-field"><label for="recordSymptoms">Symptoms</label><textarea id="recordSymptoms" maxlength="1000" required></textarea></div>
+                        <div class="field full-field"><label for="recordDiagnosis">Diagnosis</label><textarea id="recordDiagnosis" maxlength="1000" required></textarea></div>
+                        <div class="field full-field"><label for="recordPlan">Care plan</label><textarea id="recordPlan" maxlength="1000"></textarea></div>
+                        <div class="full-field"><button class="button button-primary" type="submit">Save visit record</button></div>
+                    </form>
+                </article>
+                <article class="panel">
+                    <div class="panel-heading"><div><p class="eyebrow">VISIT HISTORY</p><h3>Recent entries</h3></div></div>
+                    <div id="recordsList" class="entry-list"></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="page" id="activity">
+            <div class="section-intro"><p class="eyebrow">TRANSPARENCY</p><h2>Access activity</h2><p class="muted">Actions recorded in this demo workspace.</p></div>
+            <article class="panel">
+                <div class="panel-heading"><div><p class="eyebrow">WORKSPACE LOG</p><h3>Recent activity</h3></div></div>
+                <div id="activityList" class="entry-list"></div>
+            </article>
+            <div class="danger-zone">
+                <div><strong>Reset demo data</strong><p>Clear the patient, records, and activity stored in this browser.</p></div>
+                <button class="button button-danger" id="resetButton" type="button">Reset data</button>
+            </div>
+        </section>
+        <footer class="app-footer">HealthPass demo · Not for clinical use</footer>
+    </main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
