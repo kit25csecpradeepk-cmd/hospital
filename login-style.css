@@ -1,0 +1,150 @@
+/* filepath: c:\Users\Pradeep K\OneDrive\Desktop\health tech\login-style.css */
+:root {
+    color-scheme: light;
+    --green: #125c52;
+    --green-dark: #0c453f;
+    --ink: #193331;
+    --muted: #71817e;
+    --line: #e3ebe8;
+    --paper: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--ink);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background: #f2f6f3;
+}
+
+button, input { font: inherit; }
+
+.login-shell {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(320px, .92fr) 1.08fr;
+}
+
+.login-aside {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: 42px clamp(32px, 6vw, 88px);
+    overflow: hidden;
+    color: #fff;
+    background:
+        radial-gradient(ellipse at 20% 80%, #ffffff17 0 2px, transparent 3px) 0 0 / 35px 35px,
+        linear-gradient(145deg, #17695d, #103e3c);
+}
+
+.login-aside::after {
+    position: absolute;
+    right: -150px;
+    bottom: 8%;
+    width: 360px;
+    height: 360px;
+    border: 1px solid #ffffff24;
+    border-radius: 50%;
+    box-shadow: 0 0 0 45px #ffffff09, 0 0 0 90px #ffffff07;
+    content: "";
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    width: fit-content;
+    color: inherit;
+    font-size: 19px;
+    font-weight: 750;
+    letter-spacing: -.4px;
+    text-decoration: none;
+}
+
+.brand-mark {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 12px;
+    background: #ffffff20;
+    font-size: 26px;
+    font-weight: 400;
+}
+
+.aside-copy { position: relative; z-index: 1; max-width: 510px; }
+.eyebrow { color: #4f9388; font-size: 11px; font-weight: 800; letter-spacing: 1.7px; }
+.login-aside .eyebrow { color: #b4ded3; }
+.aside-copy h1 { margin: 16px 0; font-size: clamp(38px, 5vw, 62px); line-height: 1.06; letter-spacing: -2px; }
+.aside-copy p:last-child { max-width: 410px; color: #d1e6df; font-size: 16px; line-height: 1.7; }
+.aside-footnote { position: relative; z-index: 1; color: #bbd5cf; font-size: 12px; }
+
+.login-content {
+    display: grid;
+    place-items: center;
+    padding: 40px 24px;
+}
+
+.login-card { width: min(100%, 430px); }
+.brand-dark { display: none; margin-bottom: 36px; color: var(--green); }
+.login-card > .eyebrow { margin: 0 0 10px; }
+.login-card h2 { margin: 0; font-size: clamp(26px, 3vw, 33px); letter-spacing: -1px; }
+.muted { margin: 10px 0 22px; color: var(--muted); line-height: 1.55; }
+
+.demo-note {
+    display: grid;
+    gap: 4px;
+    margin-bottom: 21px;
+    padding: 13px 15px;
+    border: 1px solid #e9dfbd;
+    border-radius: 10px;
+    background: #fffaf0;
+    color: #715d2a;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+label { display: block; margin: 16px 0 7px; font-size: 13px; font-weight: 700; }
+
+input {
+    width: 100%;
+    min-height: 47px;
+    padding: 12px 13px;
+    border: 1px solid #d7e1dd;
+    border-radius: 9px;
+    outline: none;
+    background: #fff;
+    color: var(--ink);
+    transition: border-color .15s, box-shadow .15s;
+}
+
+input:focus { border-color: #318779; box-shadow: 0 0 0 3px #3187791e; }
+.password-field { position: relative; }
+.password-field input { padding-right: 67px; }
+.text-button { position: absolute; top: 50%; right: 12px; transform: translateY(-50%); border: 0; background: none; color: var(--green); cursor: pointer; font-size: 12px; font-weight: 700; }
+
+.button {
+    min-height: 47px;
+    padding: 0 17px;
+    border: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.button-primary { background: var(--green); color: white; }
+.button-primary:hover { background: var(--green-dark); }
+.login-submit { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 22px; }
+.form-message { min-height: 18px; margin: 10px 0 0; color: #a33b36; font-size: 13px; }
+.login-footer { margin-top: 24px; color: #82908d; font-size: 11px; line-height: 1.5; }
+
+@media (max-width: 760px) {
+    .login-shell { grid-template-columns: 1fr; }
+    .login-aside { display: none; }
+    .login-content { min-height: 100vh; padding: 32px 22px; }
+    .brand-dark { display: inline-flex; }
+}
